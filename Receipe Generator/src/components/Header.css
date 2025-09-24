@@ -1,0 +1,29 @@
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+.navlinks{
+    display: flex;
+    flex-direction: row;
+}
+.navlinks>li{
+    margin-inline: 10px;
+    list-style-type: none;
+}
+.linksStyle{
+    color: black;
+    text-decoration: none;
+}
+.linksStyle:hover{
+    color: grey;
+}
+.searchBar{
+    background: white;
+    padding: 3px;
+    padding-inline: 8px;
+    border-radius: 1.625rem;
+    outline: none;
+    box-shadow:  2px 2px 4px rgba(245, 245, 245, 0.877);
+}

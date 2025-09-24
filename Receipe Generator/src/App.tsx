@@ -1,14 +1,24 @@
-
-import './App.css'
-import Home from './pages/Home'
-
+import "./App.css";
+import Header from "./components/Header";
+import GlobalProvider from "./context/AppContext";
+import CardDescription from "./pages/CardDescription";
+import Favourites from "./pages/Favourites";
+import Home from "./pages/Home";
+import { Routes, Route } from "react-router";
 function App() {
-
   return (
     <>
-    <Home/>
+    <GlobalProvider>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/details" element={<CardDescription />} />
+      </Routes>
+      </GlobalProvider>
+      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
