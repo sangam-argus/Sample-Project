@@ -1,32 +1,21 @@
-import React from 'react'
-import Cards from "../components/Cards";
+import Cards from "../components/Cards/Cards";
 import type { Receipe } from "../util/Constant";
-import { useContext } from 'react';
-import { GlobalContext } from '../context/AppContext';
-import './Home.css'
+import "./Home.css";
+import useGlobalContext from "../hooks/useGlobalContext";
 
 function Favourites() {
-  const {favourite,receipe}=useContext(GlobalContext)
+  const { favourite, receipe } = useGlobalContext();
 
-  if(favourite.length===0 || receipe.length===0){
-    return(
-      <p>
-        No Favourites
-      </p>
-    )
+  if (favourite.length === 0 || receipe.length === 0) {
+    return <p>No Favourites</p>;
   }
   return (
-   <div className='cardContainer'>
-    {receipe.filter((item:Receipe)=>
-      favourite.includes(item.id))
-      .map((item:Receipe)=>
-          <Cards item={item} key={item.id}/>
-       
-      )
-    }
-   </div>
-  )
+    <div className="cardsContainer">
+      {favourite.map((item: Receipe) => (
+        <Cards item={item} key={item.id} />
+      ))}
+    </div>
+  );
 }
 
-export default Favourites
-
+export default Favourites;

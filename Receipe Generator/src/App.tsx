@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import GlobalProvider from "./context/AppContext";
 import CardDescription from "./pages/CardDescription";
 import Favourites from "./pages/Favourites";

@@ -1,10 +1,10 @@
 import "./Cards.css";
-import type { Receipe } from "../util/Constant";
+import "../Button/Button.css"
+import type { Receipe } from "../../util/Constant";
 import { useNavigate } from "react-router-dom";
 function Cards({ item }: { item: Receipe }) {
   const navigate = useNavigate();
   const { image, name } = item;
-console.log("hello")  
 return (
     <div className="card">
       <img src={image} width={100} />
@@ -19,8 +19,9 @@ return (
           });
         }}
       >
-        {" "}
-        Receipe Detail{" "}
+        <span className="buttonTop">Receipe Detail</span>
+        
+        
       </button>
     </div>
   );

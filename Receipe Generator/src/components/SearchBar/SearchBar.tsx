@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react'
-import "./Header.css"
-import { GlobalContext } from '../context/AppContext'
+import "./SearchBar.css"
+import useGlobalContext from '../../hooks/useGlobalContext'
 function SearchBar() {
-    const {searchString,setSearchString,handleSubmit}=useContext(GlobalContext)
+    const {searchString,setSearchString,handleSubmit}=useGlobalContext()
 
   return (
     <>

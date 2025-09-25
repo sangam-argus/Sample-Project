@@ -19,11 +19,3 @@
 .linksStyle:hover{
     color: grey;
 }
-.searchBar{
-    background: white;
-    padding: 3px;
-    padding-inline: 8px;
-    border-radius: 1.625rem;
-    outline: none;
-    box-shadow:  2px 2px 4px rgba(245, 245, 245, 0.877);
-}

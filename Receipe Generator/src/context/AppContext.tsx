@@ -5,9 +5,10 @@ export type MyContext = {
   searchString: string;
   setSearchString: (newParam: string) => void;
   receipe: Receipe[];
-  handleSubmit: (data: string) => void;
-  favourite: number[];
-  handleFavourites: (data: number) => void;
+  handleSubmit: (data: React.FormEvent) => void;
+  favourite: Receipe[];
+  handleFavourites: (data: Receipe) => void;
+  loading:(boolean)
 };
 export const GlobalContext = React.createContext<MyContext | null>(null);
 
@@ -20,11 +21,11 @@ export default function GlobalProvider({
   const [receipe, setReciepe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [favourite, setFavourite] = useState<number[] | []>([]);
+  const [favourite, setFavourite] = useState<Receipe[] | []>([]);
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
+    setSearchString("")
     event.preventDefault();
-    setFavourite([]);
     try {
       setLoading(true);
       const response = await fetch(
@@ -44,14 +45,18 @@ export default function GlobalProvider({
     return { loading, error };
   };
 
-  const handleFavourites = (id: number) => {
+  const handleFavourites = (receipeItem: Receipe) => {
     const temp = [...favourite];
-    if (temp.includes(id)) {
-      setFavourite(temp.filter((item) => item !== id));
+    const index = temp.findIndex(item=> item.id === receipeItem.id)
+
+    if(index === -1) {
+      temp.push(receipeItem)
     } else {
-      temp.push(id);
-      setFavourite(temp);
+      temp.splice(index)
     }
+
+    setFavourite(temp)
+  
   };
   return (
     <GlobalContext.Provider
@@ -62,6 +67,7 @@ export default function GlobalProvider({
         receipe,
         favourite,
         handleFavourites,
+        loading
       }}
     >
       {children}
