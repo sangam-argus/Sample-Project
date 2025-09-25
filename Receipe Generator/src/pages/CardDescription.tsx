@@ -2,15 +2,16 @@ import { useLocation } from 'react-router-dom';
 import type { Receipe } from '../util/Constant';
 import '../components/Button/Button.css'
 import useGlobalContext from '../hooks/useGlobalContext';
+import BackButton from '../components/BackButton/BackButton';
 function CardDescription() {
   const {favourite ,handleFavourites}=useGlobalContext()
-
   const location=useLocation();
   const receipeData=location.state.item
   const {image,rating,cookTimeMinutes,name,instructions}=receipeData
- 
 
   return (
+    <div className='cardDescription'>
+      <BackButton/>
       <div className="card">
         <img src={image} width={100}/>
         
@@ -29,6 +30,7 @@ function CardDescription() {
             <li className='instructionList' key={idx}>{step}</li>
         )}
         </ol>
+    </div>
     </div>
   )
 }
