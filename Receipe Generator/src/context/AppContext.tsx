@@ -5,7 +5,7 @@ export type MyContext = {
   searchString: string;
   setSearchString: (newParam: string) => void;
   receipe: Receipe[];
-  handleSubmit: (data: React.FormEvent) => void;
+  handleSubmit: (e:React.FormEvent) => void;
   favourite: Receipe[];
   handleFavourites: (data: Receipe) => void;
   loading:(boolean)
@@ -23,9 +23,9 @@ export default function GlobalProvider({
   const [error, setError] = useState(null);
   const [favourite, setFavourite] = useState<Receipe[] | []>([]);
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (e:React.FormEvent) => {
+    e.preventDefault()
     setSearchString("")
-    event.preventDefault();
     try {
       setLoading(true);
       const response = await fetch(

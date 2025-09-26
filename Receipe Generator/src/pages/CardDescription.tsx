@@ -3,36 +3,75 @@ import type { Receipe } from '../util/Constant';
 import '../components/Button/Button.css'
 import useGlobalContext from '../hooks/useGlobalContext';
 import BackButton from '../components/BackButton/BackButton';
+import './CardDescription.css'
+import { useState } from 'react';
 function CardDescription() {
   const {favourite ,handleFavourites}=useGlobalContext()
   const location=useLocation();
-  const receipeData=location.state.item
-  const {image,rating,cookTimeMinutes,name,instructions}=receipeData
+  const recipe=location.state.item
+  const [loading,setLoading]=useState(true)
 
   return (
-    <div className='cardDescription'>
+    <>
       <BackButton/>
-      <div className="card">
-        <img src={image} width={100}/>
-        
-        <p>{name}</p>
-        <button onClick={()=>handleFavourites(receipeData)}> <span className='buttonTop'>{favourite && favourite.length > 0 && favourite.findIndex(
-              (item:Receipe) => item.id === receipeData?.id
+     <div className="recipe-container">
+      <h1 className="recipe-title">{recipe.name}</h1>
+      <div className="recipe-header">
+        <div className="recipe-image-wrapper">
+          {loading && <div className="loading">Loading...</div>}
+          <img
+            src={recipe.image}
+            alt={recipe.name}
+            className={`recipe-image ${loading ? "hidden" : ""}`}
+            onLoad={() => setLoading(false)}
+          />
+          
+        </div>
+         
+        <div className="recipe-meta">
+            
+          <p><span className="primary">Prep Time:</span> {recipe.prepTimeMinutes} mins</p>
+          <p><span className="primary">Cook Time:</span> {recipe.cookTimeMinutes} mins</p>
+          <p><span className="primary">Servings:</span> {recipe.servings}</p>
+          <p><span className="primary">Difficulty:</span> {recipe.difficulty}</p>
+          <p><span className="primary">Cuisine:</span> {recipe.cuisine}</p>
+          <p><span className="primary">Calories/Serving:</span> {recipe.caloriesPerServing}</p>
+          <p><span className="primary">Rating:</span> :star: {recipe.rating} ({recipe.reviewCount} reviews)</p>
+          <p><span className="primary">Meal Type:</span> {recipe.mealType.join(", ")}</p>
+          <p><span className="primary">Tags:</span> {recipe.tags.join(", ")}</p>
+        </div>
+      </div>
+      <div className='favouriteButton'>
+        <button onClick={()=>handleFavourites(recipe)}> <span className='buttonTop'>{favourite && favourite.length > 0 && favourite.findIndex(
+              (item:Receipe) => item.id === recipe?.id
             ) !== -1
               ? "Remove from favorites"
               : "Add to favorites"}</span> </button>
-        <p> Rating : {rating}</p>
-        <p> Cooking Time: {cookTimeMinutes}</p>
-        <h4>Instructions:</h4>
+      </div>
+      <div className="recipe-section">
+         
+        <h2 className="secondary">Ingredients</h2>
+        <ul>
+          {recipe.ingredients.map((item:string, idx:number) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="recipe-section">
+        <h2 className="secondary">Instructions</h2>
         <ol>
-        {instructions.map((step:string,idx:number)=>
-          
-            <li className='instructionList' key={idx}>{step}</li>
-        )}
+          {recipe.instructions.map((step:string, idx:number) => (
+            <li key={idx}>{step}</li>
+          ))}
         </ol>
+      </div>
     </div>
-    </div>
+
+    </>
   )
 }
 
 export default CardDescription
+
+
+ 

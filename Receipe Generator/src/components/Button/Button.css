@@ -4,6 +4,9 @@ button {
   --button_radius: 0.75em;
   --button_color: #f0cdcd;
     margin-block: 5px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
   font-weight: bold;
   border: none;
   cursor: pointer;

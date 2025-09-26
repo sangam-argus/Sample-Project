@@ -1,20 +1,25 @@
-.card{
-    margin: 20px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items:center ;
-    width: 300px;
-      box-shadow: 
-    inset -2px 2px hsl(0 0 100% / 1),
-    -20px 20px 40px hsl(0 0 0 / .25) ;
-     background-image: linear-gradient(to bottom left, #e0e4e5, #f2f6f9);
-    border-radius: 2rem;
+.card {
+  margin: 20px;
 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 220px;
+  /* box-shadow: 
+    inset -2px 2px hsl(0 0 100% / 1),
+    -20px 20px 40px hsl(0 0 0 / .25) ; */
+  background-image: linear-gradient(to bottom left, #e0e4e5, #f2f6f9);
+  border-radius: 10px;
 }
-.card >p , h4{
-    margin: 0;
+.card > p,
+h4 {
+  margin: 0;
 }
-/* .instructionList{
-    list-style-type: none;
-} */
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+.hidden{
+    display: none;
+}

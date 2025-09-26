@@ -3,6 +3,10 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    padding-inline: 30px;
+    padding-block: 20px;
+    
+    background-image: linear-gradient(to bottom left, #e0e4e5, #f2f6f9);
 }
 .navlinks{
     display: flex;

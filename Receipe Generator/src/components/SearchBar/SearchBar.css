@@ -1,8 +1,46 @@
-.searchBar{
-    background: white;
-    padding: 3px;
-    padding-inline: 8px;
-    border-radius: 1.625rem;
-    outline: none;
-    box-shadow:  2px 2px 4px rgba(245, 245, 245, 0.877);
+.searchBar {
+  background: white;
+  padding: 6px;
+  padding-inline: 8px;
+  border-radius: 1rem;
+  outline: none;
+  box-shadow: 2px 2px 4px rgba(245, 245, 245, 0.877);
+  border-color: gray;
+}
+/* From Uiverse.io by Bodyhc */
+.search {
+  display: inline-block;
+  position: relative;
+}
+
+.search input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search button[type="submit"] {
+  background-color: #4e99e9;
+  width: 80px;
+  height: 35px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  /* padding: 10px 20px; */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  transition: 0.9s ease;
+}
+
+.search button[type="submit"]:hover {
+  transform: scale(1.05);
+  color: white;
+  /* background-color: blue; */
+  background-color:#49a0fc ;
 }
