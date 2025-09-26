@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className="headerContainer">
-      <h3> <Link to={"/"} className="linksStyle">Food Receipes</Link> </h3>
+      <h3 className="appName"> <Link to={"/"} className="linksStyle">Food Receipes</Link> </h3>
       <div>
         <SearchBar />
       </div>

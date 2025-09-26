@@ -2,15 +2,16 @@ import { useContext } from 'react'
 import { Grid,Typography,Box } from '@mui/material'
 import { GlobalContext } from '../context/GlobalContext'
 import { Chart } from './Chart'
+import FilterOptions from './FilterOptions'
 
 function Summary() {
 
     const {totalExpense,totalIncome}=useContext(GlobalContext)
   return (
-     <Grid container sx={{ marginTop:"20px", display: "flex", alignItems: "center" ,justifyContent:'center'}} bgcolor={"grey.200"}>
+     <Grid container height={"60vh"} >
           {/* Left Part */}
 
-          <Grid size={6} display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"} >
+          <Grid size={6} display={"flex"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"} height={"100%"} bgcolor={"grey.200"}>
             <Typography variant="h6" gutterBottom color={totalIncome-totalExpense>=0?'black':'red'}>
               Balance is {totalIncome-totalExpense} $
             </Typography>
@@ -29,21 +30,11 @@ function Summary() {
             </Box>
             </Grid>
           </Grid>
-          {/* Right Part (Graph Placeholder) */}
-          <Grid  size={6} display="flex" justifyContent="center" alignItems="center">
-            <Box
-              sx={{
-                width: "30%",
-                height: 300,
-                bgcolor: "grey.200",
-                borderRadius: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+          <Grid  size={6} padding={"5px"} height={"50vh"} >
+            
+              <FilterOptions/>
               <Chart totalExpense={totalExpense} totalIncome={totalIncome}/>
-            </Box>
+            
           </Grid>
         </Grid>
   )

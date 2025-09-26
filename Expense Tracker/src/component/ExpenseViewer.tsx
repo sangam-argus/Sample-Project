@@ -1,37 +1,53 @@
-import  { useContext } from 'react'
-import { Grid,Typography } from '@mui/material'
-import { GlobalContext } from '../context/GlobalContext'
-import type { Transaction } from '../utils/Types'
+import { useContext } from "react";
+import { Grid, Typography, List, ListItem, ListItemText } from "@mui/material";
+import { GlobalContext } from "../context/GlobalContext";
+import type { Transaction } from "../utils/Types";
+import { listStyle } from "../utils/style";
 function ExpenseViewer() {
-    const {allTransaction}=useContext(GlobalContext)
+  const { allTransaction,filter ,filteredTransactions} = useContext(GlobalContext);
+  const transactions = filter.type === "all" ? allTransaction : filteredTransactions;
   return (
     <Grid container spacing={2}>
-          <Grid  size={6}>
-            <Typography variant="h6">Expense</Typography>
-            {allTransaction.filter((item:Transaction)=>item.type==="expense")
-            .map((item:Transaction,index:number)=>(
-              <Grid key={index} sx={{border:'1px grey',backgroundColor:'#c99997',display:'flex',flexDirection:'row',justifyContent:'space-between',marginBottom:'5px'}}>
-                <Typography sx={{float:"left"}}>{item.description}</Typography>
-                <Typography sx={{float:"right"}}>{item.amount}</Typography>
-
-              </Grid>
-            ))
-            }
-          </Grid>
-          <Grid  size={6} textAlign="left">
-            <Typography variant="h6">Income</Typography>
-           {allTransaction.filter((item:Transaction)=>item.type==="income")
-            .map((item:Transaction,index:number)=>(
-              <Grid key={index} sx={{border:'1px grey',backgroundColor:'#c99997',display:'flex',flexDirection:'row',justifyContent:'space-between',marginBottom:'5px'}}>
-                <Typography sx={{float:"left"}}>{item.description}</Typography>
-                <Typography sx={{float:"right"}}>{item.amount}</Typography>
-
-              </Grid>
-            ))
-            }
-          </Grid>
-        </Grid>
-  )
+      <Grid size={6}>
+        <Typography variant="h6">Income</Typography>
+         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+          {transactions
+            .filter((item: Transaction) => item.type === "income")
+            .map((item: Transaction, index: number) => (
+              <ListItem key={index} sx={listStyle}>
+                <ListItemText
+                  primary={item.date.format("YYYY-MM-DD")}
+                  secondary={item.description}
+                  sx={{ flex: 1 }}
+                />
+                <Typography sx={{ fontWeight: "bold" }}>
+                  {item.amount}
+                </Typography>
+              </ListItem>
+            ))}
+        </List>
+      </Grid>
+      <Grid size={6} textAlign="left">
+        <Typography variant="h6">Expense</Typography>
+        <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+            {transactions
+            .filter((item: Transaction) => item.type === "expense")
+            .map((item: Transaction, index: number) => (
+              <ListItem key={index} sx={listStyle}>
+                <ListItemText
+                  primary={item.date.format("YYYY-MM-DD")}
+                  secondary={item.description}
+                  sx={{ flex: 1 }}
+                />
+                <Typography sx={{ fontWeight: "bold" }}>
+                  {item.amount}
+                </Typography>
+              </ListItem>
+            ))}
+        </List>
+      </Grid>
+    </Grid>
+  );
 }
 
-export default ExpenseViewer
+export default ExpenseViewer;

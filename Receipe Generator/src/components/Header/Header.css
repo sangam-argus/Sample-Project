@@ -8,6 +8,9 @@
     
     background-image: linear-gradient(to bottom left, #e0e4e5, #f2f6f9);
 }
+.appName{
+    font-style: bold;
+}
 .navlinks{
     display: flex;
     flex-direction: row;

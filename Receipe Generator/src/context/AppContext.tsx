@@ -39,7 +39,6 @@ export default function GlobalProvider({
       }
     } catch (e: any) {
       setError(e);
-      console.log("Error message");
       setLoading(false);
     }
     return { loading, error };
