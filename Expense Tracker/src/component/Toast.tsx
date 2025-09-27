@@ -1,4 +1,4 @@
-import { Alert,  Snackbar } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 
 function Toast({
   open,
@@ -9,7 +9,6 @@ function Toast({
   handleClose: (data: boolean) => void;
   message: string;
 }) {
-
   return (
     <div>
       <Snackbar

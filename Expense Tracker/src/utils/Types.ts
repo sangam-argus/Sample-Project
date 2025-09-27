@@ -1,25 +1,25 @@
-import dayjs, {Dayjs} from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
-export interface Transaction{
-    description:string;
-    amount:number | string;
+export interface Transaction {
+    description: string;
+    amount: number | string;
     type: "income" | "expense"
-    date:Dayjs
+    date: Dayjs
 }
 
 
-export const intialTransaction : Transaction= {
+export const intialTransaction: Transaction = {
     description: "",
     amount: '',
     type: "income",
-    date:dayjs()
+    date: dayjs()
 }
 
-export interface filterOptions{
-    type:string;
-    value?:Dayjs
+export interface filterOptions {
+    type: string;
+    value?: Dayjs
 }
-export const initialFilterOption:filterOptions={
-    type:'all',
-    value:dayjs()
+export const initialFilterOption: filterOptions = {
+    type: 'all',
+    value: dayjs()
 }

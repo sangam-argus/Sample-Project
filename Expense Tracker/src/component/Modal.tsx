@@ -27,8 +27,8 @@ export default function BasicModal({
 }) {
   const [transaction, setTransaction] =
     useState<Transaction>(intialTransaction);
-  const [error,setError]=useState<string>('')
-  const [showToast,setShowtoast]=useState(false)
+  const [error, setError] = useState<string>("");
+  const [showToast, setShowtoast] = useState(false);
   const { handleAddTransaction } = useContext(GlobalContext);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -46,9 +46,9 @@ export default function BasicModal({
     }
   };
   const handleTransaction = () => {
-    if(transaction.description==='' || transaction.amount===''){
-      setError("Please Fill all the required fields")
-      setShowtoast(true)
+    if (transaction.description === "" || transaction.amount === "") {
+      setError("Please Fill all the required fields");
+      setShowtoast(true);
       return;
     }
     handleAddTransaction(transaction);
@@ -57,89 +57,97 @@ export default function BasicModal({
   };
   return (
     <>
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={modalStyle}>
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={() => handleClose(true)}
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-          }}
-        >
-          X
-        </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modalStyle}>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => handleClose(true)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+            }}
+          >
+            X
+          </Button>
 
-        <TextField
-          required
-          fullWidth
-          margin="normal"
-          name="description"
-          label="Enter Description"
-          placeholder="Enter Description..."
-          value={transaction.description}
-          onChange={handleChange}
-        />
-
-        <TextField
-          required
-          fullWidth
-          margin="normal"
-          name="amount"
-          label="Enter Amount"
-          placeholder="Enter Amount..."
-          value={transaction.amount}
-          onChange={handleChange}
-        />
-
-        <RadioGroup
-          row
-          aria-labelledby="transaction-type-group"
-          name="type"
-          value={transaction.type}
-          onChange={handleChange}
-          sx={{ my: 2 }}
-        >
-          <FormControlLabel value="income" control={<Radio />} label="Income" />
-          <FormControlLabel
-            value="expense"
-            control={<Radio />}
-            label="Expense"
+          <TextField
+            required
+            fullWidth
+            margin="normal"
+            name="description"
+            label="Enter Description"
+            placeholder="Enter Description..."
+            value={transaction.description}
+            onChange={handleChange}
           />
-        </RadioGroup>
 
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="Date"
-            name="date"
-            value={transaction.date}
-            onChange={handleDateChange}
-            sx={{ my: 2, width: "100%" }}
+          <TextField
+            required
+            fullWidth
+            margin="normal"
+            name="amount"
+            label="Enter Amount"
+            placeholder="Enter Amount..."
+            value={transaction.amount}
+            onChange={handleChange}
           />
-        </LocalizationProvider>
 
-        <Grid container spacing={2} sx={{ mt: 1 }}>
-          <Grid>
-            <Button variant="contained" onClick={handleTransaction}>
-              Add
-            </Button>
+          <RadioGroup
+            row
+            aria-labelledby="transaction-type-group"
+            name="type"
+            value={transaction.type}
+            onChange={handleChange}
+            sx={{ my: 2 }}
+          >
+            <FormControlLabel
+              value="income"
+              control={<Radio />}
+              label="Income"
+            />
+            <FormControlLabel
+              value="expense"
+              control={<Radio />}
+              label="Expense"
+            />
+          </RadioGroup>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Date"
+              name="date"
+              value={transaction.date}
+              onChange={handleDateChange}
+              sx={{ my: 2, width: "100%" }}
+            />
+          </LocalizationProvider>
+
+          <Grid container spacing={2} sx={{ mt: 1 }}>
+            <Grid>
+              <Button variant="contained" onClick={handleTransaction}>
+                Add
+              </Button>
+            </Grid>
+            <Grid>
+              <Button variant="outlined" onClick={() => handleClose(true)}>
+                Cancel
+              </Button>
+            </Grid>
           </Grid>
-          <Grid>
-            <Button variant="outlined" onClick={() => handleClose(true)}>
-              Cancel
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-    </Modal>
-    <Toast open={showToast} message={error}  handleClose={()=>setShowtoast(false)}/> 
+        </Box>
+      </Modal>
+      <Toast
+        open={showToast}
+        message={error}
+        handleClose={() => setShowtoast(false)}
+      />
     </>
   );
 }

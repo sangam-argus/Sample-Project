@@ -15,7 +15,8 @@ import { GlobalContext } from "../context/GlobalContext";
 import { type filterOptions, initialFilterOption } from "../utils/Types";
 
 function FilterOptions() {
-  const [filterOption, setFilterOption] = useState<filterOptions>(initialFilterOption);
+  const [filterOption, setFilterOption] =
+    useState<filterOptions>(initialFilterOption);
   const { setFilter } = useContext(GlobalContext);
 
   const handleDateChange = (newValue: Dayjs | null) => {
@@ -44,9 +45,20 @@ function FilterOptions() {
 
   return (
     <>
-      <Grid sx={{ width: "100%",display:'flex',flexDirection:'row',justifyContent:'center',marginTop:'10px',gap:'10px'}}>
+      <Grid
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginTop: "10px",
+          gap: "10px",
+        }}
+      >
         <FormControl variant="filled" sx={{ minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-filled-label">Filter by</InputLabel>
+          <InputLabel id="demo-simple-select-filled-label">
+            Filter by
+          </InputLabel>
           <Select value={filterOption.type} onChange={handleChange}>
             <MenuItem value="all">
               <em>All</em>
@@ -82,9 +94,7 @@ function FilterOptions() {
             />
           )}
         </LocalizationProvider>
-        <Button onClick={handleSubmitFilter}>
-          Submit
-        </Button>
+        <Button onClick={handleSubmitFilter}>Submit</Button>
       </Grid>
     </>
   );

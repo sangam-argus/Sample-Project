@@ -33,7 +33,14 @@ export function Chart({
   };
 
   return (
-  <Grid display={"flex"} justifyContent={"center"} height={"40vh"} alignItems={"center"} marginTop={"10px"}>
-  <Pie data={data} options={options} />;
-  </Grid>)
+    <Grid
+      display={"flex"}
+      justifyContent={"center"}
+      height={"40vh"}
+      alignItems={"center"}
+      marginTop={"10px"}
+    >
+      <Pie data={data} options={options} />;
+    </Grid>
+  );
 }
