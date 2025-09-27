@@ -49,13 +49,14 @@ function FilterOptions() {
         sx={{
           width: "100%",
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           justifyContent: "center",
           marginTop: "10px",
           gap: "10px",
+          paddingInline:'60px'
         }}
       >
-        <FormControl variant="filled" sx={{ minWidth: 120 }}>
+        <FormControl variant="filled" >
           <InputLabel id="demo-simple-select-filled-label">
             Filter by
           </InputLabel>

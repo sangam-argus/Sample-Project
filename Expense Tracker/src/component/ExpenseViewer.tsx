@@ -10,7 +10,10 @@ function ExpenseViewer() {
     filter.type === "all" ? allTransaction : filteredTransactions;
   return (
     <Grid container spacing={2}>
-      <Grid size={6}>
+      <Grid
+        size={6}
+        sx={{ bgcolor: "background.paper", borderRadius: 2, boxShadow: 3,padding:'10px' }}
+      >
         <Typography variant="h6">Income</Typography>
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
           {transactions
@@ -29,7 +32,11 @@ function ExpenseViewer() {
             ))}
         </List>
       </Grid>
-      <Grid size={6} textAlign="left">
+      <Grid
+        size={6}
+        textAlign="left"
+        sx={{ bgcolor: "background.paper", borderRadius: 2, boxShadow: 3,padding:'10px' }}
+      >
         <Typography variant="h6">Expense</Typography>
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
           {transactions

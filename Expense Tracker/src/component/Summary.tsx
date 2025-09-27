@@ -6,48 +6,92 @@ import FilterOptions from "./FilterOptions";
 
 function Summary() {
   const { totalExpense, totalIncome } = useContext(GlobalContext);
-  return (
-    <Grid container height={"60vh"}>
-      {/* Left Part */}
+  const balance = totalIncome - totalExpense;
 
+  return (
+    <Grid
+      container
+      spacing={2}
+      height={"60vh"}
+      marginTop={"20px"}
+      padding={"10px"}
+    >
+      {/* Left Part: Balance */}
       <Grid
-        size={6}
-        display={"flex"}
-        alignItems={"center"}
-        flexDirection={"column"}
-        justifyContent={"center"}
-        height={"100%"}
-        bgcolor={"grey.200"}
+        size={4}
+        sx={{
+          p: 3,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "background.paper",
+          borderRadius: 2,
+          boxShadow: 3,
+        }}
       >
         <Typography
-          variant="h6"
+          variant="h5"
           gutterBottom
-          color={totalIncome - totalExpense >= 0 ? "black" : "red"}
+          color={balance >= 0 ? "success.main" : "error.main"}
+          fontWeight="bold"
         >
-          Balance is {totalIncome - totalExpense} $
+          Balance: ${balance}
         </Typography>
-        <Grid
-          display={"flex"}
-          justifyContent={"center"}
-          flexDirection={"column"}
-          alignItems={"center"}
-        >
-          <Box>
-            <Typography variant="body1">$ {totalIncome}</Typography>
-            <Typography variant="body2" color="text.secondary">
-              Total Income
-            </Typography>
-          </Box>
-          <Box mt={2}>
-            <Typography variant="body1">$ {totalExpense}</Typography>
-            <Typography variant="body2" color="text.secondary">
-              Total Expense
-            </Typography>
-          </Box>
-        </Grid>
+        <Box textAlign="center" mt={2}>
+          <Typography variant="h6" color="primary.main">
+            ${totalIncome}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Total Income
+          </Typography>
+        </Box>
+        <Box textAlign="center" mt={2}>
+          <Typography variant="h6" color="error.main">
+            ${totalExpense}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Total Expense
+          </Typography>
+        </Box>
+      
       </Grid>
-      <Grid size={6} padding={"5px"} height={"50vh"}>
+
+      {/* Middle Part: Filter Options */}
+      <Grid
+        size={4}
+        sx={{
+          p: 3,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "background.paper",
+          borderRadius: 2,
+          boxShadow: 3,
+          gap:'20px'
+        }}
+      >
         <FilterOptions />
+      </Grid>
+
+      {/* Right Part: Chart */}
+      <Grid
+        size={4}
+        sx={{
+          p: 3,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "background.paper",
+          borderRadius: 2,
+          boxShadow: 3,
+        }}
+      >
         <Chart totalExpense={totalExpense} totalIncome={totalIncome} />
       </Grid>
     </Grid>

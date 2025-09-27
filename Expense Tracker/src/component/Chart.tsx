@@ -40,7 +40,7 @@ export function Chart({
       alignItems={"center"}
       marginTop={"10px"}
     >
-      <Pie data={data} options={options} />;
+      <Pie data={data} options={options} />
     </Grid>
   );
 }
