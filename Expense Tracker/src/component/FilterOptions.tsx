@@ -13,11 +13,21 @@ import { Dayjs } from "dayjs";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { type filterOptions, initialFilterOption } from "../utils/Types";
+import Toast from "./Toast";
+import { useEffect } from "react";
 
 function FilterOptions() {
   const [filterOption, setFilterOption] =
     useState<filterOptions>(initialFilterOption);
-  const { setFilter } = useContext(GlobalContext);
+  const { setFilter , filter} = useContext(GlobalContext);
+  const [showToast, setShowtoast] = useState(false);
+
+  useEffect(()=>{
+    if(filterOption!==initialFilterOption){
+
+    setShowtoast(true)
+    }
+  },[filter])
 
   const handleDateChange = (newValue: Dayjs | null) => {
     if (newValue) {
@@ -53,10 +63,10 @@ function FilterOptions() {
           justifyContent: "center",
           marginTop: "10px",
           gap: "10px",
-          paddingInline:'60px'
+          paddingInline: "60px",
         }}
       >
-        <FormControl variant="filled" >
+        <FormControl variant="filled">
           <InputLabel id="demo-simple-select-filled-label">
             Filter by
           </InputLabel>
@@ -95,8 +105,14 @@ function FilterOptions() {
             />
           )}
         </LocalizationProvider>
-        <Button onClick={handleSubmitFilter}>Submit</Button>
+        <Button variant="contained" onClick={handleSubmitFilter}>Submit</Button>
       </Grid>
+      <Toast
+        open={showToast}
+        message={`Your Data has been changes according to ${filterOption.type}`}
+        handleClose={() => setShowtoast(false)}
+        severity={"success"}
+      />
     </>
   );
 }

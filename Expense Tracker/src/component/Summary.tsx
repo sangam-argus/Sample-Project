@@ -12,8 +12,8 @@ function Summary() {
     <Grid
       container
       spacing={2}
-      height={"60vh"}
-      marginTop={"20px"}
+      marginTop={"10vh"}
+      height={"50vh"}
       padding={"10px"}
     >
       {/* Left Part: Balance */}

@@ -14,12 +14,12 @@ function ExpenseViewer() {
         size={6}
         sx={{ bgcolor: "background.paper", borderRadius: 2, boxShadow: 3,padding:'10px' }}
       >
-        <Typography variant="h6">Income</Typography>
+        <Typography variant="h6" color="success" fontWeight={"bold"}>Income</Typography>
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
           {transactions
             .filter((item: Transaction) => item.type === "income")
             .map((item: Transaction, index: number) => (
-              <ListItem key={index} sx={listStyle}>
+              <ListItem key={index} sx={{...listStyle,backgroundColor:'#b7e4c7'}}>
                 <ListItemText
                   primary={item.date.format("YYYY-MM-DD")}
                   secondary={item.description}
@@ -37,12 +37,14 @@ function ExpenseViewer() {
         textAlign="left"
         sx={{ bgcolor: "background.paper", borderRadius: 2, boxShadow: 3,padding:'10px' }}
       >
-        <Typography variant="h6">Expense</Typography>
+        <Typography variant="h6" color="error" fontWeight={"bold"}>Expense</Typography>
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
           {transactions
             .filter((item: Transaction) => item.type === "expense")
             .map((item: Transaction, index: number) => (
-              <ListItem key={index} sx={listStyle}>
+              <ListItem key={index} sx={{...listStyle,backgroundColor:'#ffccd5'
+
+              }}>
                 <ListItemText
                   primary={item.date.format("YYYY-MM-DD")}
                   secondary={item.description}

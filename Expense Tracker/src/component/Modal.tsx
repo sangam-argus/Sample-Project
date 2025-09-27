@@ -51,6 +51,7 @@ export default function BasicModal({
       setShowtoast(true);
       return;
     }
+    console.log("i am in")
     handleAddTransaction(transaction);
     setTransaction(intialTransaction);
     handleClose(true);
@@ -70,8 +71,9 @@ export default function BasicModal({
             onClick={() => handleClose(true)}
             sx={{
               position: "absolute",
-              right: 8,
-              top: 8,
+              right: 35,
+              top:-30,
+              marginTop:6
             }}
           >
             X
@@ -147,6 +149,7 @@ export default function BasicModal({
         open={showToast}
         message={error}
         handleClose={() => setShowtoast(false)}
+        severity={"error"}
       />
     </>
   );

@@ -20,9 +20,7 @@ export function Chart({
       },
     ],
   };
-  {
-    console.log("income", totalIncome, "expense", totalExpense);
-  }
+ 
 
   const options = {
     plugins: {

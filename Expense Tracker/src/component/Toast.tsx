@@ -4,10 +4,12 @@ function Toast({
   open,
   handleClose,
   message,
+  severity
 }: {
   open: boolean;
   handleClose: (data: boolean) => void;
   message: string;
+  severity:string
 }) {
   return (
     <div>
@@ -19,7 +21,7 @@ function Toast({
       >
         <Alert
           onClose={() => handleClose(true)}
-          severity="error"
+          severity={severity==="error"?"error":"success"}
           variant="filled"
           sx={{ width: "100%" }}
         >
